@@ -5,13 +5,13 @@
 ## Example usage
 
 ```bash
-py gloc.py user
+py gloc.py USERNAME
 ```
 
 Output:
 
 ```
-Total LoC for user (25 repos): 170539.
+Total LoC for USERNAME (25 repos): 170539.
 Breakdown:
 ------------------------------------------
   Vue:                      108411 (63.57%)
@@ -25,7 +25,7 @@ Breakdown:
 You can also get lines of code for a single repo:
 
 ```bash
-py gloc.py user --repo=gloc
+py gloc.py USERNAME --repo=REPO_NAME
 ```
 
 ## Command Line Arguments
