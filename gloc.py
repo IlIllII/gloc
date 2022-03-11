@@ -130,11 +130,12 @@ def print_language_breakdown(languages: dict, total_loc: int):
     for language in sorted(
         languages.keys(), key=lambda lang: languages[lang], reverse=True
     ):
+        padding = 15
         percent = languages[language] / total_loc * 100
         lines = languages[language]
         if extended or percent >= 1:
             print(
-                f"  {language}:{' ' * (15 - len(language))}{' ' * (15 - len(str(lines)))} {lines} ({percent:0.2f}%)"
+                f"  {language}:{' ' * (padding - len(language))}{' ' * (padding - len(str(lines)))} {lines} ({percent:0.2f}%)"
             )
 
 
