@@ -21,6 +21,7 @@ def hit_endpoint(owner: str, endpoint_type: str, endpoint: str) -> dict or None:
     response = None
     tries = 0
     wait = 0.5
+    success = 200
     while response is None and tries < 4:
         if token is not None:
             response = requests.get(
@@ -35,13 +36,10 @@ def hit_endpoint(owner: str, endpoint_type: str, endpoint: str) -> dict or None:
                 f"https://api.github.com/{endpoint_type}/{owner}{endpoint}"
             )
 
-        if response.status_code == 200:
+        if response.status_code == success:
             break
-        elif response.status_code == 202:
-            response = None
-            time.sleep(wait)
         else:
-            time.sleep(1)
+            time.sleep(wait)
             response = None
         tries += 1
 
@@ -75,7 +73,7 @@ def accumulate_loc(loc_data: list) -> int:
         loc_data (list): [[int, int, int]], where each inner list is a week of data: [timestamp, additions, deletions]
 
     Returns:
-        int: total lines in the repo (includeing comments!)
+        int: total lines in the repo (including comments!)
     """
 
     total = 0
